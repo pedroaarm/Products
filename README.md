@@ -9,7 +9,7 @@ Postgres
 Docker (Docker-compose)
 
 
-##Run
+## Run
 Para rodar a aplicação de maneira fácil basta rodar:
 
 docker-compose up
