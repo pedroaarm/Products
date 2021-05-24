@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "produto"
+      POSTGRES_USER: tc
+      POSTGRES_PASSWORD: tc
+      volumes:
+        ./init.sql:/docker-entrypoint-initdb.d/init.sq
+  app:
+    build: .
+    ports:
+      - "9999:9999"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost/produto
+      SPRING_DATASOURCE_USERNAME: tc
+      SPRING_DATASOURCE_PASSWORD: tc
+      SERVER_PORT: 9999
+
+    network_mode: "host"
+    hostname: localhost
+    depends_on:
+      - db
